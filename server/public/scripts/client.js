@@ -18,9 +18,19 @@ function setupClickListeners() {
 function getKoalas(){
   console.log( 'in getKoalas' );
   // ajax call to server to get koalas
-  
-} // end getKoalas
-
+  $.ajax({
+    method: 'GET',
+    url: '/koalas'
+  }).then((result) => {
+    let koalas = result;
+    for (koala of koalas) {
+      $('#viewKoalas').append(`<tr><td>${koala.koala_name}</td><td>${koala.koala_age}</td>
+                               <td>${koala.koala_gender}</td><td>${koala.ready_to_transfer}</td>
+                               <td>${koala.koala_notes}</td><td>${koala.mark_ready}</td>
+                               <td>${koala.remove}</td></tr>`)
+    }
+}) // end getKoalas
+}
 function saveKoala(){
   // package the data
   getKoalaInfo = {
@@ -30,9 +40,11 @@ function saveKoala(){
     ready_to_transfer: $('#ready_to_transfer_in').val(),
     koala_notes: $('#koala_notes_in').val(),
   }
-  // ajax call to server to get koalas
- 
 }
+  
+  // ajax call to server to get koalas
+
+
 
 function updateKoala() {
 
