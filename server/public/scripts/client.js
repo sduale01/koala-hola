@@ -11,6 +11,9 @@ $( document ).ready( function(){
 
 function setupClickListeners() {
   $( '#addButton' ).on( 'click', saveKoala);
+  $( '#viewKoalas').on('click', '.transfer-ready-button', hideShow);
+  $( '#viewKoalas').on('click', '.transfer-ready-button', updateKoala);
+
 }
 
 
@@ -26,11 +29,25 @@ function getKoalas(){
     for (koala of koalas) {
       $('#viewKoalas').append(`<tr><td>${koala.koala_name}</td><td>${koala.koala_age}</td>
                                <td>${koala.koala_gender}</td><td>${koala.ready_to_transfer}</td>
-                               <td>${koala.koala_notes}</td> <td><button class="transfer-ready-button">Ready for Transfer</button></td>
+                               <td>${koala.koala_notes}</td><td><button class="transfer-ready-button" data-transferid=${koala.ready_to_transfer}>Ready for Transfer</button></td>
                                <td><button class="delete-button">Delete</button></td></tr>`)
     }
 }) // end getKoalas
 }
+
+function hideShow(){
+  console.log($(this).data('transferid'))
+  const transferId = $(this).data('transferid');
+  if ( transferId ) {
+    console.log('hide button');
+    $('.transfer-ready-button').hide();
+  } else {
+    console.log('show button');
+  }
+  
+};
+
+
 function saveKoala(){
   // package the data
   getKoalaInfo = {
