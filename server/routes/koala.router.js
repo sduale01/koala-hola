@@ -30,8 +30,8 @@ koalaRouter.post('/',(req,res)=>{
     const queryText = `INSERT INTO "inventory" ("koala_name","koala_age",
                        "koala_gender", "ready_to_transfer", "koala_notes")
                        VALUES ($1,$2,$3,$4,$5);`;
-    pool.query(queryText, [req.body.koala_name, req.body.koala_gender, 
-                           req.body.koala_age, req.body.ready_to_transfer, 
+    pool.query(queryText, [req.body.koala_name, req.body.koala_age, 
+                           req.body.koala_gender, req.body.ready_to_transfer, 
                            req.body.koala_notes,]).then((result)=>{
                                res.sendStatus(201);
                            }).catch((error)=>{
