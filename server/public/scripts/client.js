@@ -6,11 +6,13 @@ $( document ).ready( function(){
   setupClickListeners()
   // load existing koalas on page load
   getKoalas();
+  
 
 }); // end doc ready
 
 function setupClickListeners() {
   $( '#addButton' ).on( 'click', saveKoala);
+  $('#viewKoalas').on('click', '.delete-button', deleteKoala);
 }
 
 
@@ -27,10 +29,19 @@ function getKoalas(){
     for (koala of koalas) {
       $('#viewKoalas').append(`<tr><td>${koala.koala_name}</td><td>${koala.koala_age}</td>
                                <td>${koala.koala_gender}</td><td>${koala.ready_to_transfer}</td>
+<<<<<<< HEAD
                                <td>${koala.koala_notes}</td> <td><button class="transfer-ready-button">Ready for Transfer</button></td>
                                <td><button class="delete-button">Delete</button></td></tr>`)
       }
     }) // end getKoalas
+=======
+                               <td>${koala.koala_notes}</td>
+                               <td><button class="transfer-ready-button">Ready for Transfer</button></td>
+                               <td><button class="delete-button" data-koalaid=${koala.id}>Delete</button></td>
+                               </tr>`)
+    }
+}) // end getKoalas
+>>>>>>> 5a59d7f5bc26972a9b9ac4c8273723753908e7ab
 }
 function saveKoala(){
   // package the data
@@ -68,6 +79,16 @@ function updateKoala() {
   });
 }
 
+// Delete a row from the table
 function deleteKoala() {
+  console.log('delete pressed');
+  const koalaId = $(this).data('koalaid')
+
+  $.ajax({
+    method: 'DELETE',
+    url: `/koalas/${koalaId}`
+  }).then((response) => {
+    getKoalas();
+  })
   
 }
