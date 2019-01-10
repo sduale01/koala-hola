@@ -26,8 +26,8 @@ function getKoalas(){
     for (koala of koalas) {
       $('#viewKoalas').append(`<tr><td>${koala.koala_name}</td><td>${koala.koala_age}</td>
                                <td>${koala.koala_gender}</td><td>${koala.ready_to_transfer}</td>
-                               <td>${koala.koala_notes}</td><td>${koala.mark_ready}</td>
-                               <td>${koala.remove}</td></tr>`)
+                               <td>${koala.koala_notes}</td> <td><button class="transfer-ready-button">Ready for Transfer</button></td>
+                               <td><button class="delete-button">Delete</button></td></tr>`)
     }
 }) // end getKoalas
 }
