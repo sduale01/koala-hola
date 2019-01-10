@@ -13,7 +13,15 @@ const pool = new Pool({
 });
 
 // GET
-
+koalaRouter.get('/',(req,res)=>{
+    const queryText = `SELECT * FROM "inventory";`;
+    pool.query(queryText).then((result) => {
+        res.send(result.rows)
+    }).catch((error) => {
+        console.log(error, 'in get');
+        res.sendStatus(500);
+    });
+})
 
 // POST
 koalaRouter.post('/',(req,res)=>{
