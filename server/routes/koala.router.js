@@ -17,8 +17,8 @@ const pool = new Pool({
 
 // POST
 koalaRouter.post('/',(req,res)=>{
-    const queryText = `INSERT INTO "inventory" ("koala_name","koala_gender",
-                       "koala_age","ready_to_transfer","koala_notes")
+    const queryText = `INSERT INTO "inventory" ("koala_name","koala_age",
+                       "koala_gender", "ready_to_transfer", "koala_notes")
                        VALUES ($1,$2,$3,$4,$5);`;
     pool.query(queryText, [req.body.koala_name, req.body.koala_gender, 
                            req.body.koala_age, req.body.ready_to_transfer, 
