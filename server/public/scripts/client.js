@@ -22,6 +22,7 @@ function getKoalas(){
     method: 'GET',
     url: '/koalas'
   }).then((result) => {
+    $('#viewKoalas').empty();
     let koalas = result;
     for (koala of koalas) {
       $('#viewKoalas').append(`<tr><td>${koala.koala_name}</td><td>${koala.koala_age}</td>
