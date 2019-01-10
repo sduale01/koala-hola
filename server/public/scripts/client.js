@@ -35,7 +35,17 @@ function saveKoala(){
 }
 
 function updateKoala() {
-
+  const koalaId = $(this).data('koalaid');
+  console.log( 'in updateKoalas ');
+  $.ajax({
+    method: 'PUT',
+    url: `koalas/update/${koalaId}`
+  }).then(function(response) {
+    saveKoala();
+  }).catch(function(error) {
+    alert(`Something went wrong. Unable to get Koala ready.`)
+    console.log('Error in PUT', error)
+  });
 }
 
 function deleteKoala() {
