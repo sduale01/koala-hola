@@ -40,6 +40,13 @@ function saveKoala(){
     ready_to_transfer: $('#ready_to_transfer_in').val(),
     koala_notes: $('#koala_notes_in').val(),
   }
+  $.ajax({
+    method:'POST',
+    url:'/koalas',
+    data:getKoalaInfo
+  }).then(function(result){
+    getKoalas();
+  });
 }
   
   // ajax call to server to get koalas
