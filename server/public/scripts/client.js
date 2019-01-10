@@ -40,6 +40,13 @@ function saveKoala(){
     ready_to_transfer: $('#ready_to_transfer_in').val(),
     koala_notes: $('#koala_notes_in').val(),
   }
+  $.ajax({
+    method:'POST',
+    url:'/koalas',
+    data:getKoalaInfo
+  }).then(function(result){
+    getKoalas();
+  });
 }
   
   // ajax call to server to get koalas
@@ -47,7 +54,17 @@ function saveKoala(){
 
 
 function updateKoala() {
-
+  const koalaId = $(this).data('koalaid');
+  console.log( 'in updateKoalas ');
+  $.ajax({
+    method: 'PUT',
+    url: `koalas/update/${koalaId}`
+  }).then(function(response) {
+    saveKoala();
+  }).catch(function(error) {
+    alert(`Something went wrong. Unable to get Koala ready.`)
+    console.log('Error in PUT', error)
+  });
 }
 
 function deleteKoala() {
