@@ -29,8 +29,8 @@ function getKoalas(){
                                <td>${koala.koala_gender}</td><td>${koala.ready_to_transfer}</td>
                                <td>${koala.koala_notes}</td> <td><button class="transfer-ready-button">Ready for Transfer</button></td>
                                <td><button class="delete-button">Delete</button></td></tr>`)
-    }
-}) // end getKoalas
+      }
+    }) // end getKoalas
 }
 function saveKoala(){
   // package the data
