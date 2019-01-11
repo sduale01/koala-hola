@@ -13,13 +13,14 @@ $( document ).ready( function(){
 function setupClickListeners() {
   $( '#addButton' ).on( 'click', saveKoala);
   $('#viewKoalas').on('click', '.delete-button', deleteKoala);
+  $('#viewKoalas').on('click', '.transfer-ready-button', updateKoala);
 }
 
 
 
 function getKoalas(){
   console.log( 'in getKoalas' );
-  // ajax call to server to get koalas
+  // ajax call to server to get koalasn then append to the DOM
   $.ajax({
     method: 'GET',
     url: '/koalas'
@@ -27,15 +28,26 @@ function getKoalas(){
     $('#viewKoalas').empty();
     let koalas = result;
     for (koala of koalas) {
-      $('#viewKoalas').append(`<tr><td>${koala.koala_name}</td><td>${koala.koala_age}</td>
+      if (koala.ready_to_transfer == true) {
+        $('#viewKoalas').append(`<tr><td>${koala.koala_name}</td><td>${koala.koala_age}</td>
                                <td>${koala.koala_gender}</td><td>${koala.ready_to_transfer}</td>
                                <td>${koala.koala_notes}</td>
-                               <td><button class="transfer-ready-button">Ready for Transfer</button></td>
                                <td><button class="delete-button" data-koalaid=${koala.id}>Delete</button></td>
                                </tr>`)
+      } else {
+        $('#viewKoalas').append(`<tr><td>${koala.koala_name}</td><td>${koala.koala_age}</td>
+                               <td>${koala.koala_gender}</td><td>${koala.ready_to_transfer}</td>
+                               <td>${koala.koala_notes}</td>
+                               <td><button class="transfer-ready-button" data-transferid="${koala.id}">Ready for Transfer</button></td>
+                               <td><button class="delete-button" data-koalaid="${koala.id}">Delete</button></td>
+                               </tr>`)
+      }
+      
     }
 }) // end getKoalas
 }
+
+// Post to the database
 function saveKoala(){
   // package the data
   getKoalaInfo = {
@@ -53,19 +65,18 @@ function saveKoala(){
     getKoalas();
   });
 }
-  
-  // ajax call to server to get koalas
 
-
-
+// Updates ready_to_transfer from false to true
 function updateKoala() {
-  const koalaId = $(this).data('koalaid');
+  const koalaId = $(this).data('transferid');
+  console.log(koalaId);
+  
   console.log( 'in updateKoalas ');
   $.ajax({
     method: 'PUT',
     url: `koalas/update/${koalaId}`
   }).then(function(response) {
-    saveKoala();
+    getKoalas();
   }).catch(function(error) {
     alert(`Something went wrong. Unable to get Koala ready.`)
     console.log('Error in PUT', error)
