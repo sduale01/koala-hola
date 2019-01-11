@@ -16,7 +16,7 @@ const pool = new Pool({
 
 // GET
 koalaRouter.get('/',(req,res)=>{
-    const queryText = `SELECT * FROM "inventory";`;
+    const queryText = `SELECT * FROM "inventory" ORDER BY "id" ASC;`;
     pool.query(queryText).then((result) => {
         res.send(result.rows)
     }).catch((error) => {

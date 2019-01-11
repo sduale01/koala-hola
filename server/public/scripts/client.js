@@ -31,13 +31,8 @@ function getKoalas(){
       if (koala.ready_to_transfer == true) {
         $('#viewKoalas').append(`<tr><td>${koala.koala_name}</td><td>${koala.koala_age}</td>
                                <td>${koala.koala_gender}</td><td>${koala.ready_to_transfer}</td>
-<<<<<<< HEAD
-                               <td>${koala.koala_notes}</td> <td><button class="transfer-ready-button">Ready for Transfer</button></td>
-                               <td><button class="delete-button">Delete</button></td></tr>`)
-      }
-    }) // end getKoalas
-=======
                                <td>${koala.koala_notes}</td>
+                               <td><div></div></td>
                                <td><button class="delete-button" data-koalaid=${koala.id}>Delete</button></td>
                                </tr>`)
       } else {
@@ -51,7 +46,6 @@ function getKoalas(){
       
     }
 }) // end getKoalas
->>>>>>> 5a59d7f5bc26972a9b9ac4c8273723753908e7ab
 }
 
 // Post to the database
