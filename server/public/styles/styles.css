@@ -1,0 +1,55 @@
+body, html {
+    padding: 0;
+    margin: 0;
+}
+
+header {
+    overflow: hidden;
+    padding: 20px 10px;
+    background-color: rgb(221, 219, 219);
+}
+
+header img, header h1, header h2, header h3 {
+    float: left;
+    margin: 20px;
+}
+
+header img {
+    height: 100%;
+    width: 100px;
+}
+
+header h3 {
+    margin-left: 10px;
+}
+
+table {
+    border-collapse: collapse;
+    margin-left: 20px;
+    font-size: 17px;
+}
+
+table tr th {
+    border: 2px solid black;
+    padding: 5px;
+    font-size: 20px;
+    background-color: rgb(212, 247, 247)
+}
+
+#viewKoalas tr, td  {
+    border: 1px solid black;
+    padding: 5px;
+    background-color: #ffefef
+}
+
+.transfer-ready-button, .delete-button {
+    height: 30px;
+    border-radius: 5px;
+    background-color: rgb(85, 255, 85);
+    font-size: 15px;
+}
+
+.transfer-ready-button:hover,
+.delete-button:hover {
+    cursor: pointer;
+}
